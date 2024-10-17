@@ -1,0 +1,21 @@
+<?php
+  // Open table
+  $users = FLDB_open(__DIR__."/data/users");
+
+  // Add table item
+  $index = FLDB_set($users, null, (object)[ "username"=>"sohnjhith" ]);
+
+  // Update table item
+  FLDB_set($users, $index, (object)[ "username"=>"johnsmith" ]);
+  
+  // Search table
+  $results = FLDB_filter($users, "username", function($value) {
+		return $value === "johnsmith";
+	});
+
+  // Get table item field
+  $username = FLDB_field_get($users, $index, "username");
+
+  // Close table
+  FLDB_close($users_schema);
+?>
